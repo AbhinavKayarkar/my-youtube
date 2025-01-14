@@ -5,16 +5,25 @@ import {
   USER_ICON,
   YOUTUBE_SEARCH_URL,
 } from "../utils/constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
+import { addToCache } from "../utils/cacheSlice";
 const Header = () => {
   const dispatch = useDispatch();
   const [searchText, setSearchText] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestion, setShowSuggestion] = useState(false);
+  const searchQuery = useSelector((state) => state.cache);
   // Will run after each chnage in search Text.
   useEffect(() => {
-    const timer = setTimeout(() => getSearchSuggestions(), 200);
+    const timer = setTimeout(() => {
+      // cache the search result in redux slice cacheSlice.
+      if (searchQuery[searchText]) {
+        setShowSuggestion(searchQuery[searchText]);
+      } else {
+        getSearchSuggestions();
+      }
+    }, 200);
     return () => {
       clearTimeout(timer);
     };
@@ -22,10 +31,16 @@ const Header = () => {
 
   // API call to get suggestions in search bar
   async function getSearchSuggestions() {
+    //console.log("API-" + searchText);
     const data = await fetch(YOUTUBE_SEARCH_URL + searchText);
     const json = await data.json();
     //console.log(json[1]);
     setSuggestions(json[1]);
+    dispatch(
+      addToCache({
+        [searchText]: json[1],
+      })
+    );
   }
 
   const toggleHandler = () => {
