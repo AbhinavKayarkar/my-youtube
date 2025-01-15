@@ -54,6 +54,7 @@ const Header = () => {
           onClick={toggleHandler}
           className="h-8 cursor-pointer"
           src={HAMBURGE_ICON}
+          alt="hanburge-icon"
         />
         <img className="h-8" src={YOUTUBE_ICON} />
       </div>
