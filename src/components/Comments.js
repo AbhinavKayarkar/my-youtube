@@ -89,7 +89,7 @@ const Comments = () => {
             <>
               <Comments data={c} />
               <div className="ml-3 px-2 border border-l-black border-r-transparent border-b-transparent border-t-transparent">
-                <CommentsList comments={c.replies} />
+                <CommentsList comments={c?.replies} />
               </div>
             </>
           );

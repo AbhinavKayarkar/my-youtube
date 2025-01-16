@@ -23,9 +23,7 @@ const WatchPage = () => {
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
         ></iframe>
-        <div className="ml-2 p-2 border border-black w-[28rem]">
-          <LiveChatList />
-        </div>
+        <LiveChatList />
       </div>
       <Comments />
     </div>

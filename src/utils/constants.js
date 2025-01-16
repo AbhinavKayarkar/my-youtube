@@ -8,3 +8,5 @@ export const YOUTUBE_API_URL = `https://youtube.googleapis.com/youtube/v3/videos
 
 export const YOUTUBE_SEARCH_URL =
   "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+
+export const COUNT_VALUE = 250;
