@@ -8,7 +8,7 @@ const LiveChatList = () => {
   const dispatch = useDispatch();
   const chats = useSelector((store) => store.chats.liveChats);
   const [personalMsg, setPersonalMsg] = useState("");
-  console.log(chats);
+  //console.log(chats);
   useEffect(() => {
     const i = setInterval(() => {
       dispatch(
